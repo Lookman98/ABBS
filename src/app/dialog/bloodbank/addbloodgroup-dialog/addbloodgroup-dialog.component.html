@@ -1,0 +1,29 @@
+
+<h1 mat-dialog-title color="warn">ADD BLOOD</h1>
+<div mat-dialog-content>
+  
+   
+  <mat-form-field appearance="fill">
+    <mat-label>Blood Type</mat-label>
+    <mat-select #BloodType>
+        <mat-option  *ngFor="let bloodtype of bloodtypes" [value]="bloodtype.value">
+          {{bloodtype.viewValue}}
+        </mat-option>
+      </mat-select>
+</mat-form-field>
+<mat-form-field appearance="fill">
+  <mat-label>Rhesus</mat-label>
+  <mat-select #Rhesus>
+      <mat-option  *ngFor="let rh of rhs" [value]="rh.value">
+        {{rh.viewValue}}
+      </mat-option>
+    </mat-select>
+</mat-form-field>
+  <!-- <mat-form-field>
+      <input matInput #bloodQuantity  placeholder="Quantity">
+    </mat-form-field> -->
+
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button  color="accent" (click)="addBlood(BloodType.value,Rhesus.value)">Save</button>
+</div>

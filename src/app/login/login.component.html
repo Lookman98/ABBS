@@ -1,0 +1,36 @@
+
+
+
+<div class="sidenav">
+  <div class="login-main-text">
+     <!-- <h2>Application<br> Login Page</h2>
+     <p>Login or register from here to access.</p> -->
+  </div>
+</div>
+
+<div id="login">
+  <h3 class="text-center text-white pt-5"></h3>
+  <div class="container">
+      <div id="login-row" class="row justify-content-center align-items-center">
+          <div id="login-column" class="col-md-6">
+              <div id="login-box" class="col-md-12">
+                <h2 class="text-center text-info">BLOOD BANK INFORMATION SYSTEM</h2>
+                      <div class="form-group">
+                          <label for="username" class="text-info">Email:</label><br>
+                          <input type="text" name="username" id="username" class="form-control"  #userName required>
+                      </div>
+                      <div class="form-group">
+                          <label for="password" class="text-info">Password:</label><br>
+                          <input type="password" name="password" id="password" class="form-control" #userPassword required>
+                      </div>
+                      <div class="form-group">
+                          <input type="submit" name="submit" class="btn btn-danger" value="Log in" (click)="authService.SignIn(userName.value, userPassword.value)">
+                      </div>
+                      <div id="register-link" class="text-left">
+                        <span routerLink="/forgot-password" class="text-info">Forgot Password?</span>
+                    </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

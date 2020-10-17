@@ -1,0 +1,115 @@
+<!-- <button mat-raised-button color="accent" (click)="addDialog()">Add Blood Group</button> -->
+
+<div fxLayout="row" fxLayoutAlign="space-between-center" fxLayoutGap="20px">
+    <div fxFlex="90">
+        <div class="container">
+            <span class="fill-remaining-space"></span>
+            <h1>DONOR RECORD</h1>
+            <span class="fill-remaining-space"></span>
+        </div>
+        <div class="search-div">
+            <button mat-raised-button color="accent" (click)="addDialog()">
+                <mat-icon>add</mat-icon>Add Donor
+            </button>
+            <mat-form-field class="search-form-field" floatLabel="never" appearance="none">
+                <input matInput (keyup)="applyFilter($event.target.value)" autocomplete="off" placeholder="Search">
+            </mat-form-field>
+        </div>
+
+
+        <div class="example-container mat-elevation-z8">
+
+            <mat-table #table [dataSource]="dataSource" matSort [trackBy]="trackByUid" class="animate">
+
+
+
+                <ng-container matColumnDef="donor_name">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                    <mat-cell *matCellDef="let donor"> {{donor.donor_name }} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="donor_ic">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> IC </mat-header-cell>
+                    <mat-cell *matCellDef="let donor"> {{ donor.donor_ic }} </mat-cell>
+                </ng-container>
+
+
+                <ng-container matColumnDef="donor_age">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Age </mat-header-cell>
+                    <mat-cell *matCellDef="let donor"> {{ donor.donor_age }} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="donor_gender">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Gender </mat-header-cell>
+                    <mat-cell *matCellDef="let donor"> {{ donor.donor_gender }} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="donor_number">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Phone No </mat-header-cell>
+                    <mat-cell *matCellDef="let donor"> {{ donor.donor_number }} </mat-cell>
+                </ng-container>
+            
+                <ng-container matColumnDef="donor_address1">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Address1 </mat-header-cell>
+                    <mat-cell *matCellDef="let donor"> {{ donor.donor_address1 }} </mat-cell>
+                </ng-container>
+                
+                <ng-container matColumnDef="donor_address2">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Address2 </mat-header-cell>
+                    <mat-cell *matCellDef="let donor"> {{ donor.donor_address2 }} </mat-cell>
+                </ng-container>
+
+                
+                <ng-container matColumnDef="donor_postcode">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Postcode </mat-header-cell>
+                    <mat-cell *matCellDef="let donor"> {{ donor.donor_postcode }} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="donor_email">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+                    <mat-cell *matCellDef="let donor"> {{ donor.donor_email }} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="donor_bloodgroup">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Blood Group </mat-header-cell>
+                    <mat-cell *matCellDef="let donor"> {{ donor.donor_bloodgroup }} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="donor_rhesus">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Rhesus </mat-header-cell>
+                    <mat-cell *matCellDef="let donor"> {{ donor.donor_rhesus }} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="last_donate">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Last Donation </mat-header-cell>
+                    <mat-cell *matCellDef="let donor"> {{ donor.last_donate }} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="edit">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Edit </mat-header-cell>
+                    <mat-cell *matCellDef="let donor">
+                        <button mat-icon-button color="primary" (click)="updateDialog(donor)">
+                            <mat-icon>launch</mat-icon>
+                        </button>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="delete">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Delete </mat-header-cell>
+                    <mat-cell *matCellDef="let donor">
+                        <button mat-icon-button color="warn" (click)="delete(donor.uid,donor.name)">
+                            <mat-icon>delete_outline</mat-icon>
+                        </button>
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;" class="animate"></mat-row>
+                <!-- <mat-footer-row *matFooterRowDef="['nodata']" [ngClass]="{'hide':!(dataSource!=null && dataSource.data.length==0)}"></mat-footer-row> -->
+
+            </mat-table>
+            <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator>
+        </div>
+
+    </div>
+
+</div>

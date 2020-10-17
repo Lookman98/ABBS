@@ -1,0 +1,45 @@
+<mat-toolbar style="color: white; background-color: brown;">
+    <mat-toolbar-row>
+        <button mat-icon-button (click)="toggleSideBar()">
+            <mat-icon>menu</mat-icon>
+        </button>
+
+        <span> BLOOD BANK SYSTEM </span>
+
+        <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
+            <ul fxLayout="row" fxLayoutGap="20px">
+                <li>
+                    <button mat-icon-button>
+                        <mat-icon>settings</mat-icon>
+                    </button>
+                </li>
+                <li>
+                    <button mat-icon-button>
+                        <mat-icon>help_outline</mat-icon>
+                    </button>
+                </li>
+                <li>
+                    <button mat-button [matMenuTriggerFor]="menu">
+                        <mat-icon>person_outline</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                       <div class="profile-card" mat-menu-item *ngIf="authService.userData as user" > 
+                       
+                            <img 
+                              src="{{(user.photoURL) ? user.photoURL : '/assets/dummy-user.png'}}"
+                              alt="{{user.displayName}}">  
+                               <!-- {{(user.displayName) ? user.displayName : 'User'}}  -->
+                               {{(user.role) ? user.role : 'User'}} 
+                        </div>
+                        <button mat-menu-item>
+                             <mat-icon>exit_to_app</mat-icon> 
+                                <span (click)="authService.SignOut()" >Sign Out</span> 
+                        </button>
+                      
+                    </mat-menu>
+                    
+                </li>
+            </ul>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>

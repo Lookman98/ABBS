@@ -1,0 +1,50 @@
+<!-- 
+<button mat-raised-button color="accent" (click)="addDialog()" >Add Blood Group</button>
+
+<div  fxLayout="row" fxLayoutAlign="space-between-center" fxLayoutGap="20px">
+  <div fxFlex="50">
+
+<div class="example-container mat-elevation-z8">
+  <div class="example-header">
+    <mat-form-field class="search">
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+    </mat-form-field>
+  </div>
+
+  
+
+  <mat-table #table [dataSource]="dataSource" matSort [trackBy]="trackByUid" class="animate">
+
+    <ng-container matColumnDef="bloodgroup">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Blood Group </mat-header-cell>
+      <mat-cell *matCellDef="let bloodbank"> {{ bloodbank.bloodgroup }} </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="quantity">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </mat-header-cell>
+      <mat-cell *matCellDef="let bloodbank"> {{ bloodbank.quantity }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Edit </mat-header-cell>
+        <mat-cell *matCellDef="let bloodbank"> 
+          <button mat-raised-button  color="primary" (click)="updateDialog(bloodbank)">Edit</button> 
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Edit </mat-header-cell>
+      <mat-cell *matCellDef="let bloodbank"> 
+        <button mat-raised-button  color="warn" (click)="delete(bloodbank.uid)">Delete</button> 
+      </mat-cell>
+  </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" class="animate"></mat-row>
+  </mat-table>
+</div>
+
+</div>
+  
+</div> -->

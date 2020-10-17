@@ -1,0 +1,56 @@
+<h1 mat-dialog-title color="warn">ADD DONOR</h1>
+<div mat-dialog-content>
+
+
+    <mat-form-field>
+        <input matInput #Name placeholder="Name">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput #IC placeholder="IC">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput #Age placeholder="Age">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Gender</mat-label>
+        <mat-select #Gender>
+            <mat-option  *ngFor="let gender of genders" [value]="gender.value">
+              {{gender.viewValue}}
+            </mat-option>
+          </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput #Number placeholder="Phone Number">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput #Address1 placeholder="Address1">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput #Address2 placeholder="Address2">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput #Postcode placeholder="Postcode">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Blood Type</mat-label>
+        <mat-select #BloodType>
+            <mat-option  *ngFor="let bloodtype of bloodtypes" [value]="bloodtype.value">
+              {{bloodtype.viewValue}}
+            </mat-option>
+          </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Rhesus</mat-label>
+        <mat-select #Rhesus>
+            <mat-option  *ngFor="let rh of rhs" [value]="rh.value">
+              {{rh.viewValue}}
+            </mat-option>
+          </mat-select>
+    </mat-form-field>
+
+
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button color="accent"
+        (click)="add(Name.value,IC.value,Age.value,Gender.value,Number.value,Address1.value,Address2.value,Postcode.value,BloodType.value,Rhesus.value)">Save</button>
+</div>
