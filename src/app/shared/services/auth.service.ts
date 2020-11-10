@@ -4,10 +4,7 @@ import { auth, Unsubscribe } from 'firebase/app';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from "@angular/router";
-import * as firebase from 'firebase';
 import { Observable } from 'rxjs';
-import { map } from 'highcharts';
-import { ObserversModule } from '@angular/cdk/observers';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +12,9 @@ import { ObserversModule } from '@angular/cdk/observers';
 
 export class AuthService {
   userData: any; // Save logged in user data
-  isAdmin$: Observable<boolean>;
-  isBBS: Observable<boolean>;
+  user$: Observable<User>;
+  role: any;
+  cUserRole: any;
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
@@ -38,16 +36,14 @@ export class AuthService {
     })
 
    
-
   }
 
-  // Sign in with email/password
-  async SignIn(email, password) {
+  async adminSignIn(email,password){
     try {
       
       const result = this.afAuth.auth.signInWithEmailAndPassword(email, password);
       this.ngZone.run(() => {
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['administrator']);
       });
       this.SetUserData((await result).user);
     } catch (error) {
@@ -55,18 +51,42 @@ export class AuthService {
     }
   }
 
-  // Sign up with email/password
-  async SignUp(email, password) {
+
+  // Sign in with email/password
+  async SignIn(email, password) {
     try {
-      const result = await this.afAuth.auth.createUserWithEmailAndPassword(email, password);
-      /* Call the SendVerificaitonMail() function when new user sign
-      up and returns promise */
-   
-      this.SendVerificationMail();
-      this.SetUserData(result.user);
+      const result = this.afAuth.auth.signInWithEmailAndPassword(email, password);
+      this.ngZone.run(async () => {
+        this.router.navigate(['dashboard']);
+      },
+      this.SetUserData((await result).user));
     } catch (error) {
       window.alert(error.message);
     }
+  }
+
+  // Sign up with email/password
+  // async SignUp(email,password) {
+  //   try {
+  //     const result = await this.afAuth.auth.createUserWithEmailAndPassword(email, password);
+  //     /* Call the SendVerificaitonMail() function when new user sign
+  //     up and returns promise */
+  //     this.SendVerificationMail();
+  //     // this.SetUserData(result.user);
+  //   } catch (error) {
+  //     window.alert(error.message);
+  //   }
+  // }
+
+  SignUp(email, password) {
+    return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+      .then((result) => {
+        window.alert("You have been successfully registered!");
+        this.SetUserData(result.user);
+        console.log(result.user)
+      }).catch((error) => {
+        window.alert(error.message)
+      })
   }
 
   // Send email verfificaiton when new user sign up
@@ -88,7 +108,7 @@ export class AuthService {
   // Returns true when user is looged in and email is verified
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
-    return (user !== null && user.emailVerified !== false) ? true : false;
+    return (user !== null) ? true : false;
   }
 
   // Sign in with Google
@@ -119,15 +139,14 @@ export class AuthService {
       email: user.email,
       displayName: user.displayName,
       photoURL: user.photoURL,
-      emailVerified: user.emailVerified,
-      //role:user.role,
+      emailVerified: user.emailVerified
     }
     return userRef.set(userData, {
       merge: true
     })
   }
 
-   // determines if user has matching role
+   //determines if user has matching role
   //  checkAuthorization(user: User, allowedRoles: string[]): boolean {
   //   if (!user) return false
   //   for (const role of allowedRoles) {
@@ -138,7 +157,6 @@ export class AuthService {
   //   return false
   // }
 
-  
 
   // Sign out 
   SignOut() {
@@ -151,7 +169,7 @@ export class AuthService {
     const day =  new Date(date).getDate();
     const month = new Date(date).getMonth() + 1;
     const year = new Date(date).getFullYear();
-    return `${year}-${month}-${day}`;
+    return `${day}/${month}/${year}`;
   }
 
 }

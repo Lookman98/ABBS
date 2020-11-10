@@ -1,0 +1,75 @@
+mat-card {
+    max-width: 400px;
+    margin: 2em auto;
+    text-align: center;
+  }
+  
+  mat-form-field {
+    display: block;
+  }
+
+  #login .container #login-row #login-column #login-box {
+    margin-top: 150px;
+    max-width: 600px;
+    height: 340px;
+    //border: 1px solid #f10707;
+    background-color: #ffffff;
+    border-radius: 3%;
+  }
+  #login .container #login-row #login-column #login-box #login-form {
+    padding: 20px;
+  }
+  #login .container #login-row #login-column #login-box #login-form #register-link {
+    margin-top: -85px;
+    cursor: pointer;
+  }
+
+  .text-info{
+    color: #f10707 !important;
+    padding-top: 5px;
+  }
+
+
+.main-head{
+    height: 100px;
+    background: #FFF;
+    
+   
+}
+
+.sidenav {
+    height: 100%;
+    background-color: #000;
+    overflow-x: hidden;
+    padding-top: 20px;
+    background-image: url("../../../assets/images/bg-02.jpg");
+}
+
+
+.main {
+    padding: 0px 100px;
+    
+    
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+}
+
+
+
+@media screen and (min-width: 768px){
+    .main{
+        margin-left: 40%; 
+    }
+
+    .sidenav{
+        width: 100%;
+        position: fixed;
+        z-index: 0;
+        top: 0;
+        left: 0;
+    }
+
+}
+

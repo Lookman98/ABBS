@@ -1,11 +1,11 @@
 <mat-nav-list>
 
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="administrator" >Dashboard</a>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="register" >Register User</a>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="bloodbank">Blood Bank</a>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="campaign">Campaign</a>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="donation">Blood Donation</a>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="donor">Donor</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="administrator" *ngIf="isAdmin" >Dashboard</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="register" *ngIf="isAdmin" >Register User</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="bloodbank" *ngIf="isBBS">Blood Bank</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="campaign" *ngIf="isBBS">Campaign</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="donation" *ngIf="isBBS">Blood Donation</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="donor" *ngIf="isBBS">Donor</a>
 
 </mat-nav-list>
 

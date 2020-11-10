@@ -1,1 +1,83 @@
-<p>donation works!</p>
+<!-- <button mat-raised-button color="accent" (click)="addDialog()">Add Blood Group</button> -->
+
+<div fxLayout="row" fxLayoutAlign="space-between-center" fxLayoutGap="20px">
+    <div fxFlex="90">
+        <div class="container">
+            <span class="fill-remaining-space"></span>
+            <!-- <h1>DONOR RECORD</h1> -->
+            <span class="fill-remaining-space"></span>
+        </div>
+        <div class="search-div">
+            <button mat-raised-button color="accent" (click)="addDialog()">
+                <mat-icon>add</mat-icon>Add Donation
+            </button>
+            <mat-form-field class="search-form-field" floatLabel="never" appearance="none">
+                <input matInput (keyup)="applyFilter($event.target.value)" autocomplete="off" placeholder="Search">
+            </mat-form-field>
+        </div>
+
+
+        <div class="example-container mat-elevation-z8">
+
+            <mat-table #table [dataSource]="dataSource" matSort [trackBy]="trackByUid" class="animate">
+
+                <ng-container matColumnDef="donor_id">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Donor IC </mat-header-cell>
+                    <mat-cell *matCellDef="let donation"> {{donation.donor_ic }} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="donation_date">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+                    <mat-cell *matCellDef="let donation"> {{ donation.donation_date }} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="donation_bloodtype">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Blood Type </mat-header-cell>
+                    <mat-cell *matCellDef="let donation"> {{ donation.donation_bloodtype }} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="donation_bloodid">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Blood ID </mat-header-cell>
+                    <mat-cell *matCellDef="let donation"> {{ donation.donation_bloodid }} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="donation_amount">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Amount </mat-header-cell>
+                    <mat-cell *matCellDef="let donation"> {{ donation.donation_amount }} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="donation_type">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Donation Type </mat-header-cell>
+                    <mat-cell *matCellDef="let donation"> {{ donation.donation_type }} </mat-cell>
+                </ng-container>
+
+
+                <ng-container matColumnDef="edit">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Edit </mat-header-cell>
+                    <mat-cell *matCellDef="let donation">
+                        <button mat-icon-button color="primary" (click)="updateDialog(donation)">
+                            <mat-icon>launch</mat-icon>
+                        </button>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="delete">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Delete </mat-header-cell>
+                    <mat-cell *matCellDef="let donation">
+                        <button mat-icon-button color="warn" (click)="delete(donation.donation_id)">
+                            <mat-icon>delete_outline</mat-icon>
+                        </button>
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;" class="animate"></mat-row>
+                <!-- <mat-footer-row *matFooterRowDef="['nodata']" [ngClass]="{'hide':!(dataSource!=null && dataSource.data.length==0)}"></mat-footer-row> -->
+
+            </mat-table>
+            <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator>
+        </div>
+
+    </div>
+
+</div>

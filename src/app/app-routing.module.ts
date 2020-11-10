@@ -14,23 +14,29 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { DashboardAdminComponent } from './admin/dashboard-admin/dashboard-admin.component';
 import { NotfoundComponent } from '../app/shared/notfound/notfound.component';
+import { BloodrecordComponent } from './user/bloodrecord/bloodrecord.component';
+import { EDonorDialogComponent } from './dialog/donor/edonor-dialog/edonor-dialog.component';
+import { AdminloginComponent } from './admin/adminlogin/adminlogin.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/sign-in', pathMatch: 'full'},
   { path: 'sign-in', component: LoginComponent},
-  {path: 'verifyuser', component: VerifyEmailComponent,canActivate: [AuthGuard]},
-  { path: 'dashboard', component:DefaultComponent,canActivate: [AuthGuard],
+  { path: 'adminsign-in', component: AdminloginComponent},
+  {path: 'verifyuser', component: VerifyEmailComponent},
+
+  { path: 'dashboard', component:DefaultComponent,canActivate: [AuthGuard], 
   children: [
-    {path: 'administrator', component:DashboardAdminComponent, canActivate: [AuthGuard] },
+    {path: 'administrator', component:DashboardAdminComponent,canActivate: [AuthGuard]},
     {path: 'register', component:RegisterUserComponent, canActivate: [AuthGuard] },
     {path: 'bloodbank', component:BloodbankComponent, canActivate: [AuthGuard] },
+    {path: 'bloodrecord', component:BloodrecordComponent, canActivate: [AuthGuard] },
     {path: 'campaign', component:CampaignComponent,canActivate: [AuthGuard] },
     {path: 'donation', component:DonationComponent,canActivate: [AuthGuard] },
     {path: 'donor', component:DonorComponent, canActivate: [AuthGuard]},
     {path: 'register-user', component: RegisterUserComponent,canActivate: [AuthGuard]},
     {path: 'bloodrecord', component: RegisterUserComponent,canActivate: [AuthGuard]},
-    // {path: '404', component: NotfoundComponent},
-    // {path: '**', redirectTo: '/404'}
+    {path: 'editdonor', component: EDonorDialogComponent,canActivate: [AuthGuard]},
+
    ]
   },
   { path: 'forgot-password', component: ForgotpasswordComponent },

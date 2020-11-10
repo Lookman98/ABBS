@@ -15,6 +15,7 @@ import { DCampdialogComponent } from '../../dialog/campaign/d-campdialog/d-campd
 import * as faker from 'faker'; //fake API to populate data
 import { ADonorDialogComponent } from 'src/app/dialog/donor/adonor-dialog/adonor-dialog.component';
 import { EDonorDialogComponent } from 'src/app/dialog/donor/edonor-dialog/edonor-dialog.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -27,7 +28,8 @@ export class DonorComponent implements AfterViewInit {
 
   constructor(public authService: AuthService,
     private afs: AngularFirestore,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private _router: Router) { }
 
   
 
@@ -65,27 +67,30 @@ export class DonorComponent implements AfterViewInit {
 
 updateDialog(data): void {
   const dialogRef = this.dialog.open(EDonorDialogComponent, {
-    width: '270px',
-    height: '260px',
+    width: '600px',
+    height: '895px',
     data: data,
   });
 }
 
 addDialog(): void {
   const dialogRef = this.dialog.open(ADonorDialogComponent, {
-    width: '300px',
-    height: '780px'
+    width: '600px',
+    height: '900px',
   });
 }
 
 
-delete(id) {
-  this.afs.collection('donor').doc(id).delete()
+delete(ic,name) {
+  if(confirm("Are you sure to delete donor IC:"+ic+"name"+name)){
+  this.afs.collection('donor').doc(ic).delete()
+  }
 }
 
 trackByUid(index, item) {
   return item.uid;
 }
+
 
 
 }

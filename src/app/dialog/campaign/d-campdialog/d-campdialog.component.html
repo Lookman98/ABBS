@@ -1,1 +1,47 @@
-<p>d-campdialog works!</p>
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="title">EDIT CAMPAIGN</h1>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div mat-dialog-content>
+                    <mat-form-field>
+                        <input matInput [value]="camp_name" #campName placeholder="Campaign Name">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput [value]="camp_location" #campLocation placeholder="Campaign Location">
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Choose a date</mat-label>
+                        <input matInput [value]="camp_date" #campDate [matDatepicker]="picker">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <input matInput [value]="time_from" #timeFrom [ngxTimepicker]="timeFrompicker"
+                            placeholder="Time Start">
+                        <ngx-material-timepicker #timeFrompicker></ngx-material-timepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <input matInput [value]="time_to" #timeTo [ngxTimepicker]="timeTopicker" placeholder="Time End">
+                        <ngx-material-timepicker #timeTopicker></ngx-material-timepicker>
+                        <!-- <ngx-material-timepicker-toggle [for]="NgxMaterialTimepickerComponent" ></ngx-material-timepicker-toggle> -->
+                    </mat-form-field>
+
+
+                </div>
+
+                <div mat-dialog-actions>
+                    <button mat-raised-button color="primary"
+                        (click)="update(campName.value,campLocation.value,campDate.value,timeFrom.value,timeTo.value)">Save</button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

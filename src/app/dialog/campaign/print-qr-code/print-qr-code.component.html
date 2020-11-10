@@ -1,0 +1,34 @@
+<div class="print" mat-dialog-actions>
+    <button mat-icon-button color="primary" (click)="print()">
+        <mat-icon>print</mat-icon>
+    </button>
+</div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="qrcode">
+                    <qrcode [level]="4" [qrvalue]="camp_name" [size]="670"></qrcode>
+                </div>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="content">
+                    <h1>{{camp_name}}</h1> <br /><br /><br /><br />
+                    <div class="title">LOKASI</div>
+                    <p>{{camp_location}}</p><br /><br /><br /><br />
+                    <div class="title">TARIKH:</div> 
+                    <p>{{camp_date}}</p> <br /><br /><br /><br />
+                    <div class="title">MASA:</div> 
+                    <p>{{time_to}} - {{time_from}}</p>
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+

@@ -1,1 +1,103 @@
-<p>edonor-dialog works!</p>
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="title">EDIT DONOR</h1>
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <form>
+          <div class="form-group row">
+            <label for="username" class="col-4 col-form-label">Name</label>
+            <div class="col-8">
+              <input #name [value]="donor_name" id="name" name="name" class="form-control here" type="text">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="name" class="col-4 col-form-label">IC</label>
+            <div class="col-8">
+              <input #ic [value]="donor_ic" id="IC" name="IC" class="form-control here" type="text">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="lastname" class="col-4 col-form-label">Age</label>
+            <div class="col-8">
+              <input #age [value]="donor_age" id="Age" name="Age" class="form-control here" type="text">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="select" class="col-4 col-form-label">Gender</label>
+            <div class="col-8">
+              <select #gender [value]="donor_gender" id="select" name="select" class="custom-select">
+                <option [value]="donor_gender">{{donor_gender}}</option>
+                <option *ngFor="let gender of genders" [value]="gender.value">{{gender.viewValue}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="text" class="col-4 col-form-label">Phone Number</label>
+            <div class="col-8">
+              <input #phoneNo [value]="donor_number" id="phone" name="phone" class="form-control here" type="text">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="publicinfo" class="col-4 col-form-label">Address 1</label>
+            <div class="col-8">
+              <textarea #address1 [value]="donor_address1" id="Address 1" name="Address 1" cols="40" rows="4"
+                class="form-control"></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="publicinfo" class="col-4 col-form-label">Address 2</label>
+            <div class="col-8">
+              <textarea #address2 [value]="donor_address2" id="address2" name="address2" cols="40" rows="4"
+                class="form-control"></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="email" class="col-4 col-form-label">Postcode</label>
+            <div class="col-8">
+              <input #postcode [value]="donor_postcode" id="postcode" name="postcode" class="form-control here"
+                type="text">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="select" class="col-4 col-form-label">Blood Type</label>
+            <div class="col-8">
+              <select #bloodtype [value]="donor_bloodtype" id="select" name="select" class="custom-select">
+                <option [value]="donor_bloodtype">{{donor_bloodtype}}</option>
+                <option [value]="bloodtype.value" *ngFor="let bloodtype of bloodtypes">{{bloodtype.viewValue}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="select" class="col-4 col-form-label">Rhesus</label>
+            <div class="col-8">
+              <select #rhesus [value]="donor_rhesus" id="select" name="select" class="custom-select">
+                <option [value]="donor_rhesus">{{donor_rhesus}}</option>
+                <option [value]="rh.value" *ngFor="let rh of rhs">{{rh.viewValue}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="offset-4 col-8">
+              <button name="submit" type="submit" class="btn btn-primary" (click)="update(name.value,
+                                                            ic.value,
+                                                            age.value,
+                                                            gender.value,
+                                                            phoneNo.value,
+                                                            address1.value,
+                                                            address2.value,
+                                                            postcode.value,
+                                                            bloodtype.value,
+                                                            rhesus.value)">SAVE</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>

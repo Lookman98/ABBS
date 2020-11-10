@@ -1,50 +1,95 @@
-<!-- 
-<button mat-raised-button color="accent" (click)="addDialog()" >Add Blood Group</button>
+<!-- <button mat-raised-button color="accent" (click)="addDialog()">Add Blood Group</button> -->
 
-<div  fxLayout="row" fxLayoutAlign="space-between-center" fxLayoutGap="20px">
-  <div fxFlex="50">
+<div fxLayout="row" fxLayoutAlign="space-between-center" fxLayoutGap="20px">
+  <div fxFlex="90">
+    <div class="container">
+      <span class="fill-remaining-space"></span>
+      <!-- <h1>BlOOD BANK RECORD</h1> -->
+      <span class="fill-remaining-space"></span>
+    </div>
+    <div class="search-div">
+      <button mat-raised-button color="accent" (click)="addDialog()">
+        <mat-icon>add</mat-icon>Add Blood
+      </button>
+      <mat-form-field class="search-form-field" floatLabel="never" appearance="none">
+        <input matInput (keyup)="applyFilter($event.target.value)" autocomplete="off" placeholder="Search">
+      </mat-form-field>
 
-<div class="example-container mat-elevation-z8">
-  <div class="example-header">
-    <mat-form-field class="search">
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
-    </mat-form-field>
+    </div>
+    <div>
+      <div class="qtitle">QUANTITY</div>
+      <div class="quantity">
+        {{quantity}}
+      </div>
+    </div>
+
+    <div class="example-container mat-elevation-z8">
+
+      <mat-table #table [dataSource]="dataSource" matSort [trackBy]="trackByUid" class="animate">
+
+        <ng-container matColumnDef="serial_no">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Serial No </mat-header-cell>
+          <mat-cell *matCellDef="let bloodbank"> {{ bloodbank.uid }} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="bloodtype">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Blood Type </mat-header-cell>
+          <mat-cell *matCellDef="let bloodbank"> {{ bloodbank.bloodType }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="rhesus">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Rhesus </mat-header-cell>
+          <mat-cell *matCellDef="let bloodbank"> {{ bloodbank.rhesus }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="lastupdate">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Last Update </mat-header-cell>
+          <mat-cell *matCellDef="let bloodbank"> {{ bloodbank.lastupdate }} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="expiredDate">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Expired Date </mat-header-cell>
+          <mat-cell *matCellDef="let bloodbank"> {{ bloodbank.expiredDate }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="edit">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Edit </mat-header-cell>
+          <mat-cell *matCellDef="let bloodbank">
+            <button mat-icon-button color="primary" (click)="updateDialog(bloodbank)">
+              <mat-icon>launch</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Delete </mat-header-cell>
+          <mat-cell *matCellDef="let bloodbank">
+            <button mat-icon-button color="warn" (click)="delete(bloodbank.uid,bloodbank.bloodType)">
+              <mat-icon>delete_outline</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <!--         
+        <ng-container matColumnDef="more">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Detail </mat-header-cell>
+          <mat-cell *matCellDef="let bloodbank">
+            <button mat-icon-button color="primary" (click)="viewRecord(bloodbank.uid)"><mat-icon>reorder</mat-icon></button>
+          </mat-cell>
+        </ng-container> -->
+        <!-- 
+        <ng-container matColumnDef="nodata">
+          <mat-footer-cell *matFooterCellDef colspan="6"> </mat-footer-cell>
+              No data
+        </ng-container> -->
+
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;" class="animate"></mat-row>
+
+        <!-- <mat-footer-row *matFooterRowDef="['nodata']" [ngClass]="{'hide':!(dataSource!=null && dataSource.data.length==0)}"></mat-footer-row> -->
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator>
+    </div>
+
   </div>
 
-  
-
-  <mat-table #table [dataSource]="dataSource" matSort [trackBy]="trackByUid" class="animate">
-
-    <ng-container matColumnDef="bloodgroup">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Blood Group </mat-header-cell>
-      <mat-cell *matCellDef="let bloodbank"> {{ bloodbank.bloodgroup }} </mat-cell>
-    </ng-container>
-
-
-    <ng-container matColumnDef="quantity">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </mat-header-cell>
-      <mat-cell *matCellDef="let bloodbank"> {{ bloodbank.quantity }} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="edit">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Edit </mat-header-cell>
-        <mat-cell *matCellDef="let bloodbank"> 
-          <button mat-raised-button  color="primary" (click)="updateDialog(bloodbank)">Edit</button> 
-        </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="delete">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Edit </mat-header-cell>
-      <mat-cell *matCellDef="let bloodbank"> 
-        <button mat-raised-button  color="warn" (click)="delete(bloodbank.uid)">Delete</button> 
-      </mat-cell>
-  </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;" class="animate"></mat-row>
-  </mat-table>
 </div>
-
-</div>
-  
-</div> -->

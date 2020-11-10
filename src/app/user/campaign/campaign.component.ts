@@ -13,6 +13,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ACampdialogComponent } from '../../dialog/campaign/a-campdialog/a-campdialog.component';
 import { DCampdialogComponent } from '../../dialog/campaign/d-campdialog/d-campdialog.component';
 import * as faker from 'faker'; //fake API to populate data
+import { Router } from '@angular/router';
+import { PrintQrCodeComponent } from 'src/app/dialog/campaign/print-qr-code/print-qr-code.component';
 
 @Component({
   selector: 'app-campaign',
@@ -25,19 +27,20 @@ export class CampaignComponent implements AfterViewInit {
 
   constructor(public authService: AuthService,
     private afs: AngularFirestore,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private _router: Router) { }
 
   
 
   //browser back button listener
   @HostListener('window:popstate', ['$event'])
   onPopState(event) {
-    console.log('Back button pressed');
+  
   }
 
   // 
   //data table column name
-  displayedColumns = ['camp_name', 'camp_date', 'camp_location', 'time_from', 'time_to','edit', 'delete' , 'detail'];
+  displayedColumns = ['camp_name', 'camp_date', 'camp_location', 'time_from', 'time_to','printQrCode','edit', 'delete'];
   dataSource: MatTableDataSource<any>;
 
   //to enable sorting
@@ -63,22 +66,30 @@ export class CampaignComponent implements AfterViewInit {
 
 updateDialog(data): void {
   const dialogRef = this.dialog.open(DCampdialogComponent, {
-    width: '270px',
-    height: '260px',
+    width: '350px',
+    height: '510px',
     data: data,
   });
 }
 
 addDialog(): void {
   const dialogRef = this.dialog.open(ACampdialogComponent, {
-    width: '300px',
-    height: '470px'
+    width: '350px',
+    height: '510px'
   });
 }
 
 
 delete(id) {
   this.afs.collection('campaign').doc(id).delete()
+}
+
+printQrCode(data){
+  const dialogRef = this.dialog.open(PrintQrCodeComponent, {
+    width: '90%',
+    height: '100%',
+    data: data,
+  });
 }
 
 trackByUid(index, item) {

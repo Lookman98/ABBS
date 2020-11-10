@@ -1,0 +1,43 @@
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="title">REGISTER DONATION</h1>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div mat-dialog-content>
+                    <mat-form-field>
+                        <input matInput #donor_ic placeholder="Donor IC">
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Choose a date</mat-label>
+                        <input #date matInput [matDatepicker]="picker">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Blood Type</mat-label>
+                        <mat-select #BloodType>
+                            <mat-option *ngFor="let bloodtype of bloodtypes" [value]="bloodtype.value">
+                                {{bloodtype.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput #amount placeholder="Amount">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput #type placeholder="Donation Type">
+                    </mat-form-field>
+                </div>
+                <div mat-dialog-actions>
+                    <button mat-raised-button color="primary"
+                        (click)="add(donor_ic.value,BloodType.value,date.value,amount.value,type.value)">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

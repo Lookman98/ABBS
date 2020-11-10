@@ -5,15 +5,16 @@
 export const environment = {
   production: false,
 
-  firebaseConfig: {
-    apiKey: "AIzaSyBg6kDN4zbwKJySpJcVoPPZtCULRTPv0aQ",
-    authDomain: "abbis-402b5.firebaseapp.com",
-    databaseURL: "https://abbis-402b5.firebaseio.com",
-    projectId: "abbis-402b5",
-    storageBucket: "abbis-402b5.appspot.com",
-    messagingSenderId: "816223497796",
-    appId: "1:816223497796:web:3a9886107c5f043bf89611",
-    measurementId: "G-PHZ1FBJLTY"
+
+  firebaseConfig : {
+    apiKey: "AIzaSyDlvKlExfWPQKHgv4oCpbCpX5eftPV7c6s",
+    authDomain: "abbis-fff25.firebaseapp.com",
+    databaseURL: "https://abbis-fff25.firebaseio.com",
+    projectId: "abbis-fff25",
+    storageBucket: "abbis-fff25.appspot.com",
+    messagingSenderId: "113279788312",
+    appId: "1:113279788312:web:e8074e94ad4173f840aa6d",
+    measurementId: "G-12YRZS54JV"
   }
   
 };

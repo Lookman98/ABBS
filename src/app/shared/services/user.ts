@@ -1,5 +1,5 @@
 export interface Role {
-    admin?:boolean;
+    administrator?:boolean;
     bloodbankstaff?:boolean;
 }
 
@@ -9,5 +9,4 @@ export interface User {
     displayName: string;
     photoURL: string;
     emailVerified: boolean;
-   // role: Role;
 }

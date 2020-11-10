@@ -1,17 +1,11 @@
 
-import { HostListener, ViewChild, AfterViewInit } from '@angular/core';
-import { Component } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
+import { HostListener, ViewChild, AfterViewInit, Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { AuthService } from "../../shared/services/auth.service";
 import { AngularFirestore } from '@angular/fire/firestore';
-//import component
-
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
-import { EditdialogComponent } from '../../dialog/bloodbank/editdialog/editdialog.component';
-import { AddbloodgroupDialogComponent } from '../../dialog/bloodbank/addbloodgroup-dialog/addbloodgroup-dialog.component';
-import * as faker from 'faker';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,31 +15,34 @@ import * as faker from 'faker';
 })
 export class BloodbankComponent implements AfterViewInit {
 
+  
   constructor(public authService: AuthService,
     private afs: AngularFirestore,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private _router: Router) { }
 
   
 
   //browser back button listener
   @HostListener('window:popstate', ['$event'])
-  onPopState(event) {
+  onPopState() {
     console.log('Back button pressed');
   }
 
-  
+  // 'serial_no','lastupdate','expiredDate','edit','delete',
   //data table column name
-  displayedColumns = ['serial_no','bloodtype','lastupdate','expiredDate','edit','delete', 'more'];
+  displayedColumns = ['bloodtype','more'];
   dataSource: MatTableDataSource<any>;
 
   //to enable sorting
   @ViewChild(MatSort) sort: MatSort;
 
   ngAfterViewInit() {
-    this.afs.collection<any>('bloodbank',ref => ref.where('bloodType','==','A+')).valueChanges().subscribe(data => {
+    this.afs.collection<any>('bloodtype').valueChanges().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.sort = this.sort;
     })
+    
   }
 
   applyFilter(filterValue: string) {
@@ -54,33 +51,37 @@ export class BloodbankComponent implements AfterViewInit {
     this.dataSource.filter = filterValue;
   }
 
-  updateDialog(data): void {
-    const dialogRef = this.dialog.open(EditdialogComponent, {
-      width: '270px',
-      height: '260px',
-      data: data,
-    });
+  updateDialog(): void {
   }
 
   addDialog(): void {
-    const dialogRef = this.dialog.open(AddbloodgroupDialogComponent, {
-      width: '270px',
-      height: '260px'
-    });
   }
 
 
   delete(id,name) {
-    if(confirm("Are you sure to delete blood group: "+name)){
+    if(confirm("Are you sure to delete blood group: "+name+id)){
       this.afs.collection('bloodbank').doc(id).delete()
     }
     
   }
 
-  trackByUid(index, item) {
+  trackByUid(item) {
     return item.uid;
   }
 
+  //put extra data to redirect page
+  viewRecord(bloodType)
+  {
+    // console.log(bloodType),
+    this._router.navigate(['dashboard/bloodrecord'],
+    {
+      queryParams:{
+        'selectedBlood': bloodType,
+      }
+    }
+   
+    );
+  }
   
 }
 

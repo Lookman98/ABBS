@@ -46,4 +46,19 @@ h1{
             height: 32px;
             width: 32px;
         }
-    
+
+
+.mat-column-camp_location,
+.mat-column-camp_name{
+    flex: 0 0 20% !important;
+}
+
+.mat-column-time_to, 
+.mat-column-time_from, 
+.mat-column-delete, 
+.mat-column-edit, 
+.mat-column-detail,
+.mat-column-printQrCode  {
+    justify-content: center;
+}
+

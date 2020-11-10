@@ -46,4 +46,41 @@ h1{
             height: 32px;
             width: 32px;
         }
-    
+
+.mat-column-donor_name{
+    flex: 0 0 17% !important;
+}
+.mat-column-donor_address1{
+    flex: 0 0 14% !important;
+}
+.mat-column-donor_address2{
+    flex: 0 0 14% !important;
+}
+.mat-column-donor_ic{
+    flex: 0 0 7.5% !important;
+    text-align: center;
+}
+
+
+.mat-column-donor_number{
+    flex: 0 0 7% !important;
+}
+.mat-column-donor_gender{
+    flex: 0 0 5% !important;
+}
+
+.mat-column-donor_bloodgroup{
+    flex: 0 0 5% !important;
+    justify-content: center;
+}
+
+.mat-column-donor_rhesus{
+   
+    justify-content: center;
+}
+
+
+
+// mat-cell, mat-header-cell, mat-footer-cell{
+//      justify-content: center;
+// }

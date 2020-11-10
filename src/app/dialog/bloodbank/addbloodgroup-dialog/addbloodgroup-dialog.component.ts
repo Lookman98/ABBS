@@ -2,11 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Inject } from '@angular/core';
-
+import { BloodType, Rh , Gender} from '../../../shared/services/blood';
 import * as faker from 'faker';
-import { Timestamp } from 'rxjs';
 import * as firebase from 'firebase';
-import { date } from 'faker';
+
 
 @Component({
   selector: 'app-addbloodgroup-dialog',
@@ -16,8 +15,9 @@ import { date } from 'faker';
 export class AddbloodgroupDialogComponent implements OnInit {
   @Input()
   bloodName: string;
-  bloodrhesus: string;
+  bloodRh: string;
   bloodQuantity: number;
+  i: number;
 
   constructor(private afs: AngularFirestore,
               public dialogRef: MatDialogRef<AddbloodgroupDialogComponent>,
@@ -36,16 +36,20 @@ export class AddbloodgroupDialogComponent implements OnInit {
   // }
 
   addBlood(name,bloodrhesus):void {
-    const bloodbank = {
+    
+  
+      const bloodbank = {
 
-      bloodType: name.toUpperCase() + bloodrhesus, 
-      lastupdate: new Date(firebase.firestore.Timestamp.now().seconds*1000).toLocaleDateString(),
-      expiredDate: new Date(firebase.firestore.Timestamp.now().seconds*1002.1).toLocaleDateString(),
-     // quantity: quantity,
-      uid: "A"+faker.random.alphaNumeric(2) + Math.floor(Math.random() * (100 - 1 + 1)) + 1,
-  }
-    this.afs.collection('bloodbank').doc(bloodbank.uid).set(bloodbank),
-    this.dialogRef.close();
+        bloodType: name.toUpperCase(),
+        rhesus: bloodrhesus,
+        lastupdate: new Date(firebase.firestore.Timestamp.now().seconds*1000).toLocaleDateString(),
+        expiredDate: new Date(firebase.firestore.Timestamp.now().seconds*1002.1).toLocaleDateString(),
+       // quantity: quantity,
+        uid: "A"+faker.random.alphaNumeric(2) + Math.floor(Math.random() * (100 - 1 + 1)) + 1,
+      }
+      this.afs.collection('bloodbank').doc(bloodbank.uid).set(bloodbank),
+      this.dialogRef.close();
+   
   }
 
   bloodtypes: BloodType[] = [
@@ -62,13 +66,3 @@ export class AddbloodgroupDialogComponent implements OnInit {
 
 }
 
-interface BloodType {
-  value: string;
-  viewValue: string;
-
-}
-
-interface Rh {
-  value: string;
-  viewValue: string;
-}

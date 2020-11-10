@@ -1,47 +1,74 @@
+<!-- <button mat-raised-button color="accent" (click)="addDialog()">Add Blood Group</button> -->
 
-<div  fxLayout="row" fxLayoutAlign="space-between-center" fxLayoutGap="20px">
-    <div fxFlex="60">
-
-      <mat-form-field>
-          <input (keyup)="searchKey($event.target.value)" matInput placeholder="Search">
+<div fxLayout="row" fxLayoutAlign="space-between-center" fxLayoutGap="20px">
+    <div fxFlex="70">
+      <div class="container">
+      <span class="fill-remaining-space"></span>
+      <!-- <h1>BlOOD BANK RECORD</h1> -->
+      <span class="fill-remaining-space"></span>
+    </div>
+      <div class="search-div">
+        <!-- <button mat-raised-button color="accent" routerLink="dashboard/registeruser">
+          <mat-icon>add</mat-icon>Add User
+        </button> -->
+        <mat-form-field class="search-form-field" floatLabel="never" appearance="none">
+          <input matInput (keyup)="applyFilter($event.target.value)" autocomplete="off"  placeholder="Search">
         </mat-form-field>
-
-    
-      <div class="mat-elevation-z8">   
-        
-              <table mat-table [dataSource]="dataSource"> 
-          
-              <!-- Position Column -->
-            <ng-container matColumnDef="position">
-                <th mat-header-cell *matHeaderCellDef> No. </th>
-                <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-              </ng-container> 
-          
-              <!-- Name Column -->
-              <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef> Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-              </ng-container> 
-          
-              <!-- Weight Column -->
-              <ng-container matColumnDef="weight">
-                <th mat-header-cell *matHeaderCellDef> Weight </th>
-                <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-              </ng-container> 
-          
-              <!-- Symbol Column -->
-              <ng-container matColumnDef="symbol">
-                <th mat-header-cell *matHeaderCellDef> Symbol </th>
-                <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-              </ng-container>
-          
-              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>
-          
-            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
       </div>
-    
+  
+  
+      <div class="example-container mat-elevation-z8">
+       
+        <mat-table #table [dataSource]="dataSource" matSort [trackBy]="trackByUid" class="animate">
+  
+  
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+            <mat-cell *matCellDef="let users"> {{ users.displayName }} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+            <mat-cell *matCellDef="let users"> {{ users.email }} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="verify">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Verified </mat-header-cell>
+            <mat-cell *matCellDef="let users"> {{ users.emailVerified }} </mat-cell>
+          </ng-container>
+
+          <!-- <ng-container matColumnDef="role">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Role </mat-header-cell>
+            <mat-cell *matCellDef="let users"> {{ users.role }} </mat-cell>
+          </ng-container> -->
+
+          <!-- <ng-container matColumnDef="edit">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Edit </mat-header-cell>
+            <mat-cell *matCellDef="let users">
+              <button mat-icon-button color="primary" (click)="editUser(users)">
+                <mat-icon>menu</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container> -->
+
+          <ng-container matColumnDef="delete">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Delete </mat-header-cell>
+            <mat-cell *matCellDef="let users"> 
+              <button mat-icon-button color="warn" (click)="delete(users.uid)">
+                <mat-icon>delete_outline</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+
+  
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;" class="animate"></mat-row>
+          <!-- <mat-footer-row *matFooterRowDef="['nodata']" [ngClass]="{'hide':!(dataSource!=null && dataSource.data.length==0)}"></mat-footer-row> -->
+        </mat-table>
+      </div>
+  
     </div>
   
-</div>
+  </div>
+  
+  

@@ -1,56 +1,97 @@
-<h1 mat-dialog-title color="warn">ADD DONOR</h1>
-<div mat-dialog-content>
 
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+               <h1 class="title">REGISTER DONOR</h1>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <form>
+                    <div class="form-group row">
+                        <label for="username" class="col-4 col-form-label">Name</label>
+                        <div class="col-8">
+                            <input #Name id="name" name="name" class="form-control here" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="name" class="col-4 col-form-label">IC</label>
+                        <div class="col-8">
+                            <input #IC id="IC" name="IC" class="form-control here" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="lastname" class="col-4 col-form-label">Age</label>
+                        <div class="col-8">
+                            <input #Age id="Age" name="Age" class="form-control here" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="select" class="col-4 col-form-label">Gender</label>
+                        <div class="col-8">
+                            <select #Gender id="select" name="select" class="custom-select">
+                                <option>Choose Gender</option>
+                                <option *ngFor="let gender of genders" [value]="gender.value">{{gender.viewValue}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="text" class="col-4 col-form-label">Phone Number</label>
+                        <div class="col-8">
+                            <input #Number id="phone" name="phone" class="form-control here" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="publicinfo" class="col-4 col-form-label">Address 1</label>
+                        <div class="col-8">
+                            <textarea #Address1 id="Address 1" name="Address 1" cols="40" rows="4"
+                                class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="publicinfo" class="col-4 col-form-label">Address 2</label>
+                        <div class="col-8">
+                            <textarea #Address2 id="address2" name="address2" cols="40" rows="4"
+                                class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="email" class="col-4 col-form-label">Postcode</label>
+                        <div class="col-8">
+                            <input #Postcode id="postcode" name="postcode" class="form-control here" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="select" class="col-4 col-form-label">Blood Type</label>
+                        <div class="col-8">
+                            <select #BloodType id="select" name="select" class="custom-select">
+                                <option>Choose Blood Type</option>
+                                <option [value]="bloodtype.value" *ngFor="let bloodtype of bloodtypes">
+                                    {{bloodtype.viewValue}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="select" class="col-4 col-form-label">Rhesus</label>
+                        <div class="col-8">
+                            <select #Rhesus id="select" name="select" class="custom-select">
+                                <option>Choose Rhesus</option>
+                                <option [value]="rh.value" *ngFor="let rh of rhs">{{rh.viewValue}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="offset-4 col-8">
+                            <button name="submit" type="submit" class="btn btn-primary"
+                                (click)="add(Name.value,IC.value,Age.value,Gender.value,Number.value,Address1.value,Address2.value,Postcode.value,BloodType.value,Rhesus.value)">SAVE</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
 
-    <mat-form-field>
-        <input matInput #Name placeholder="Name">
-    </mat-form-field>
-    <mat-form-field>
-        <input matInput #IC placeholder="IC">
-    </mat-form-field>
-    <mat-form-field>
-        <input matInput #Age placeholder="Age">
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-        <mat-label>Gender</mat-label>
-        <mat-select #Gender>
-            <mat-option  *ngFor="let gender of genders" [value]="gender.value">
-              {{gender.viewValue}}
-            </mat-option>
-          </mat-select>
-    </mat-form-field>
-    <mat-form-field>
-        <input matInput #Number placeholder="Phone Number">
-    </mat-form-field>
-    <mat-form-field>
-        <input matInput #Address1 placeholder="Address1">
-    </mat-form-field>
-    <mat-form-field>
-        <input matInput #Address2 placeholder="Address2">
-    </mat-form-field>
-    <mat-form-field>
-        <input matInput #Postcode placeholder="Postcode">
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-        <mat-label>Blood Type</mat-label>
-        <mat-select #BloodType>
-            <mat-option  *ngFor="let bloodtype of bloodtypes" [value]="bloodtype.value">
-              {{bloodtype.viewValue}}
-            </mat-option>
-          </mat-select>
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-        <mat-label>Rhesus</mat-label>
-        <mat-select #Rhesus>
-            <mat-option  *ngFor="let rh of rhs" [value]="rh.value">
-              {{rh.viewValue}}
-            </mat-option>
-          </mat-select>
-    </mat-form-field>
-
-
-</div>
-<div mat-dialog-actions>
-    <button mat-raised-button color="accent"
-        (click)="add(Name.value,IC.value,Age.value,Gender.value,Number.value,Address1.value,Address2.value,Postcode.value,BloodType.value,Rhesus.value)">Save</button>
+    </div>
 </div>

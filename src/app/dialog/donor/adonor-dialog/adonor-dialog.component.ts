@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Inject } from '@angular/core';
-
+import { BloodType, Rh , Gender} from '../../../shared/services/blood';
 import * as faker from 'faker';
 import { Time } from '@angular/common';
 import { AuthService } from 'src/app/shared/services/auth.service';
@@ -58,10 +58,10 @@ export class ADonorDialogComponent implements OnInit {
       donor_postcode: d_postcode,
       donor_bloodgroup: d_bloodgroup.toUpperCase(),
       donor_rhesus: d_rhesus.toUpperCase(),
-      uid: faker.random.alphaNumeric(16)
+      uid: "DO"+faker.random.alphaNumeric(2) + Math.floor(Math.random() * (100 - 1 + 1)) + 1,
   }
     //console.log(donor);
-    this.afs.collection('donor').doc(donor.uid).set(donor),
+    this.afs.collection('donor').doc(donor.donor_ic).set(donor),
     this.dialogRef.close();
   }
 
@@ -84,18 +84,3 @@ export class ADonorDialogComponent implements OnInit {
 
 }
 
-interface Gender {
-  value: string;
-  viewValue: string;
-}
-
-interface BloodType {
-  value: string;
-  viewValue: string;
-
-}
-
-interface Rh {
-  value: string;
-  viewValue: string;
-}

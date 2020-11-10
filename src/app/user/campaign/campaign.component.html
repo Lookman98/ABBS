@@ -4,7 +4,7 @@
   <div fxFlex="90">
     <div class="container">
       <span class="fill-remaining-space"></span>
-      <h1>BlOOD   CAMPAIGN</h1>
+      <!-- <h1>BlOOD   CAMPAIGN</h1> -->
       <span class="fill-remaining-space"></span>
     </div>
     <div class="search-div">
@@ -47,6 +47,16 @@
           <mat-cell *matCellDef="let campaign"> {{ campaign.camp_location }} </mat-cell>
         </ng-container>
 
+
+        <ng-container matColumnDef="printQrCode">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Print </mat-header-cell>
+          <mat-cell *matCellDef="let campaign">
+            <button mat-icon-button color="primary" (click)="printQrCode(campaign)">
+              <mat-icon>print</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="edit">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Edit </mat-header-cell>
           <mat-cell *matCellDef="let campaign">
@@ -66,19 +76,19 @@
         </ng-container>
 
 
-        <ng-container matColumnDef="detail">
+        <!-- <ng-container matColumnDef="detail">
           <mat-header-cell *matHeaderCellDef mat-sort-header>Detail </mat-header-cell>
           <mat-cell *matCellDef="let campaign">
             <button mat-icon-button color="primary" routeLink="">
               <mat-icon>reorder</mat-icon>
             </button>
           </mat-cell>
-        </ng-container>
+        </ng-container> -->
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;" class="animate"></mat-row>
         <!-- <mat-footer-row *matFooterRowDef="['nodata']" [ngClass]="{'hide':!(dataSource!=null && dataSource.data.length==0)}"></mat-footer-row> -->
-      
+
       </mat-table>
       <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator>
     </div>
