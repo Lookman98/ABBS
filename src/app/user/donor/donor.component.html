@@ -71,7 +71,7 @@
 
                 <ng-container matColumnDef="donor_bloodgroup">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Blood Group </mat-header-cell>
-                    <mat-cell *matCellDef="let donor"> {{ donor.donor_bloodgroup }} </mat-cell>
+                    <mat-cell *matCellDef="let donor"> {{ donor.donor_bloodType }} </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="donor_rhesus">
@@ -96,7 +96,7 @@
                 <ng-container matColumnDef="delete">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Delete </mat-header-cell>
                     <mat-cell *matCellDef="let donor">
-                        <button mat-icon-button color="warn" (click)="delete(donor.donor_ic,donor.name)">
+                        <button mat-icon-button color="warn" (click)="delete(donor.uid,donor.donor_ic,donor.donor_name)">
                             <mat-icon>delete_outline</mat-icon>
                         </button>
                     </mat-cell>

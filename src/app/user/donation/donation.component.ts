@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { HostListener } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
@@ -42,7 +42,7 @@ export class DonationComponent implements AfterViewInit {
     console.log('Back button pressed');
   }
 
-  // 
+
   //data table column name
   displayedColumns = ['donor_id', 'donation_date','donation_bloodtype', 'donation_bloodid' , 'donation_amount' ,'donation_type' , 'edit', 'delete'];
   dataSource: MatTableDataSource<any>;
@@ -54,7 +54,8 @@ export class DonationComponent implements AfterViewInit {
 
 
   ngAfterViewInit() {
-    this.afs.collection<any>('donation').valueChanges().subscribe(data => {
+
+    this.afs.collection<any>('donation', ref => ref.where("donation_status", "==", "approve")).valueChanges().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
@@ -96,9 +97,9 @@ export class DonationComponent implements AfterViewInit {
       donation_type: "walk-in",
             
     }
-       console.log(donation);
+     //  console.log(donation);
     this.afs.collection('donation').doc(donation.donation_id).set(donation);
-    this.afs.collection('donor').doc(donation.donor_ic).update({last_donation: donation.donation_date});
+    // this.afs.collection('donor').doc(donation.donor_ic).update({last_donation: donation.donation_date});
 
 
   }

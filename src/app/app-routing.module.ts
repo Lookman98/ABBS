@@ -17,6 +17,7 @@ import { NotfoundComponent } from '../app/shared/notfound/notfound.component';
 import { BloodrecordComponent } from './user/bloodrecord/bloodrecord.component';
 import { EDonorDialogComponent } from './dialog/donor/edonor-dialog/edonor-dialog.component';
 import { AdminloginComponent } from './admin/adminlogin/adminlogin.component';
+import { CampaignDonationComponent } from './user/campaign/campaign-donation/campaign-donation.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/sign-in', pathMatch: 'full'},
@@ -31,6 +32,7 @@ const routes: Routes = [
     {path: 'bloodbank', component:BloodbankComponent, canActivate: [AuthGuard] },
     {path: 'bloodrecord', component:BloodrecordComponent, canActivate: [AuthGuard] },
     {path: 'campaign', component:CampaignComponent,canActivate: [AuthGuard] },
+    {path: 'campaign_donation', component:CampaignDonationComponent, canActivate: [AuthGuard] },
     {path: 'donation', component:DonationComponent,canActivate: [AuthGuard] },
     {path: 'donor', component:DonorComponent, canActivate: [AuthGuard]},
     {path: 'register-user', component: RegisterUserComponent,canActivate: [AuthGuard]},

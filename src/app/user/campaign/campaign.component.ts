@@ -40,7 +40,7 @@ export class CampaignComponent implements AfterViewInit {
 
   // 
   //data table column name
-  displayedColumns = ['camp_name', 'camp_date', 'camp_location', 'time_from', 'time_to','printQrCode','edit', 'delete'];
+  displayedColumns = ['camp_name', 'camp_date', 'camp_location', 'time_from', 'time_to','printQrCode','more','edit', 'delete'];
   dataSource: MatTableDataSource<any>;
 
   //to enable sorting
@@ -96,5 +96,17 @@ trackByUid(index, item) {
   return item.uid;
 }
 
+ //put extra data to redirect page
+ viewRecord(campaign_id){
+  // console.log(bloodType),
+  this._router.navigate(['dashboard/campaign_donation'],
+  {
+    queryParams:{
+      'campaign_id': campaign_id,
+    }
+  }
+
+  );
+}
 
 }

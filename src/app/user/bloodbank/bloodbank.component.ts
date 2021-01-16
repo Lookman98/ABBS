@@ -6,6 +6,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { AddbloodgroupDialogComponent } from 'src/app/dialog/bloodbank/addbloodgroup-dialog/addbloodgroup-dialog.component';
 
 
 @Component({
@@ -55,6 +56,10 @@ export class BloodbankComponent implements AfterViewInit {
   }
 
   addDialog(): void {
+    const dialogRef = this.dialog.open(AddbloodgroupDialogComponent, {
+      width: '270px',
+      height: '290px'
+    });
   }
 
 
@@ -70,17 +75,16 @@ export class BloodbankComponent implements AfterViewInit {
   }
 
   //put extra data to redirect page
-  viewRecord(bloodType)
-  {
-    // console.log(bloodType),
-    this._router.navigate(['dashboard/bloodrecord'],
-    {
-      queryParams:{
-        'selectedBlood': bloodType,
+  viewRecord(bloodType){
+      // console.log(bloodType),
+      this._router.navigate(['dashboard/bloodrecord'],
+      {
+        queryParams:{
+          'selectedBlood': bloodType,
+        }
       }
-    }
-   
-    );
+    
+      );
   }
   
 }

@@ -81,9 +81,9 @@ addDialog(): void {
 }
 
 
-delete(ic,name) {
-  if(confirm("Are you sure to delete donor IC:"+ic+"name"+name)){
-  this.afs.collection('donor').doc(ic).delete()
+delete(id,ic,name) {
+  if(confirm("Are you sure to delete donor IC: "+ic+"  NAME: "+name)){
+  this.afs.collection('donor').doc(id).delete()
   }
 }
 

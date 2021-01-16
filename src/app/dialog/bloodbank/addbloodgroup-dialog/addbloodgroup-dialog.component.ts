@@ -5,6 +5,7 @@ import { Inject } from '@angular/core';
 import { BloodType, Rh , Gender} from '../../../shared/services/blood';
 import * as faker from 'faker';
 import * as firebase from 'firebase';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class AddbloodgroupDialogComponent implements OnInit {
 
   constructor(private afs: AngularFirestore,
               public dialogRef: MatDialogRef<AddbloodgroupDialogComponent>,
+              authService: AuthService,
               @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
@@ -42,8 +44,8 @@ export class AddbloodgroupDialogComponent implements OnInit {
 
         bloodType: name.toUpperCase(),
         rhesus: bloodrhesus,
-        lastupdate: new Date(firebase.firestore.Timestamp.now().seconds*1000).toLocaleDateString(),
-        expiredDate: new Date(firebase.firestore.Timestamp.now().seconds*1002.1).toLocaleDateString(),
+        lastupdate: new Date(firebase.firestore.Timestamp.now().seconds*1000).toLocaleDateString('en-GB'),
+        expiredDate: new Date(firebase.firestore.Timestamp.now().seconds*1002.1).toLocaleDateString('en-GB' ),
        // quantity: quantity,
         uid: "A"+faker.random.alphaNumeric(2) + Math.floor(Math.random() * (100 - 1 + 1)) + 1,
       }

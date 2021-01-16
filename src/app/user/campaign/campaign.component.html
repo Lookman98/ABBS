@@ -9,7 +9,7 @@
     </div>
     <div class="search-div">
       <button mat-raised-button color="accent" (click)="addDialog()">
-        <mat-icon>add</mat-icon>Add CAMPAIGN
+        <mat-icon>add</mat-icon>Add Campaign
       </button>
       <mat-form-field class="search-form-field" floatLabel="never" appearance="none">
         <input matInput (keyup)="applyFilter($event.target.value)" autocomplete="off" placeholder="Search">
@@ -57,6 +57,13 @@
           </mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="more">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Detail </mat-header-cell>
+          <mat-cell *matCellDef="let campaign">
+            <button mat-icon-button color="primary" (click)="viewRecord(campaign.uid)"><mat-icon>reorder</mat-icon></button>
+          </mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="edit">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Edit </mat-header-cell>
           <mat-cell *matCellDef="let campaign">
@@ -74,16 +81,6 @@
             </button>
           </mat-cell>
         </ng-container>
-
-
-        <!-- <ng-container matColumnDef="detail">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>Detail </mat-header-cell>
-          <mat-cell *matCellDef="let campaign">
-            <button mat-icon-button color="primary" routeLink="">
-              <mat-icon>reorder</mat-icon>
-            </button>
-          </mat-cell>
-        </ng-container> -->
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;" class="animate"></mat-row>

@@ -8,7 +8,7 @@ import { DefaultModule } from './layout/default/default.module';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { AngularFirestoreModule } from "@angular/fire/firestore";
-import { AuthService } from "./shared/services/auth.service";
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { LoginComponent } from './login/login.component';
@@ -27,7 +27,11 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { UserupdateComponent } from './admin/userupdate/userupdate.component';
+import { ApprovedialogComponent } from './dialog/campaign/approvedialog/approvedialog.component';
+import { DonationformComponent } from './dialog/campaign/donationform/donationform.component';
 
+import { AuthService } from "./shared/services/auth.service";
+import { DonationFormService } from "./shared/services/donation-form.service"
 
 
 @NgModule({
@@ -38,9 +42,8 @@ import { UserupdateComponent } from './admin/userupdate/userupdate.component';
     AdminloginComponent,
     ForgotpasswordComponent,
     UserupdateComponent,
-    
-
-    
+    ApprovedialogComponent,
+    DonationformComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,7 +71,7 @@ import { UserupdateComponent } from './admin/userupdate/userupdate.component';
     ReactiveFormsModule,
     
   ],
-  providers: [AuthService,{provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [DonationFormService,AuthService,{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

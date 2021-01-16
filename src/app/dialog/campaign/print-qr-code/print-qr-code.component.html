@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="qrcode">
-                    <qrcode [level]="4" [qrvalue]="camp_name" [size]="670"></qrcode>
+                    <qrcode [level]="4" [qrvalue]="camp_id" [size]="670"></qrcode>
                 </div>
                 <hr>
             </div>
@@ -16,6 +16,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="content">
+                    
                     <h1>{{camp_name}}</h1> <br /><br /><br /><br />
                     <div class="title">LOKASI</div>
                     <p>{{camp_location}}</p><br /><br /><br /><br />
@@ -25,8 +26,6 @@
                     <p>{{time_to}} - {{time_from}}</p>
 
                 </div>
-
-
             </div>
         </div>
 

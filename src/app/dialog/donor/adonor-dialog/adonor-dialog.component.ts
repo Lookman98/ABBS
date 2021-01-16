@@ -34,11 +34,7 @@ export class ADonorDialogComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    // const bloodType=this.afs.collection('bloodbank').get().subscribe( data => {
-    //   data.docs.forEach(doc =>{
-    //     console.log(doc.data())
-    //   })
-    // })
+   
   }
   
   onNoClick(): void {
@@ -61,7 +57,7 @@ export class ADonorDialogComponent implements OnInit {
       uid: "DO"+faker.random.alphaNumeric(2) + Math.floor(Math.random() * (100 - 1 + 1)) + 1,
   }
     //console.log(donor);
-    this.afs.collection('donor').doc(donor.donor_ic).set(donor),
+    this.afs.collection('donor').doc().set(donor),
     this.dialogRef.close();
   }
 

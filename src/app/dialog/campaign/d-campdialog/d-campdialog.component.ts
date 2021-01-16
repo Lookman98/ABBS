@@ -40,7 +40,7 @@ export class DCampdialogComponent implements OnInit {
 
   update(campName, campLocation, campDate, timeFrom, timeTo): void {
 
-    this.camp_name = campName.toUpperCase(),
+      this.camp_name = campName.toUpperCase(),
       this.camp_location = campLocation.toUpperCase(),
       this.camp_date = campDate,
       this.time_from = timeFrom,

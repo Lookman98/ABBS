@@ -13,6 +13,7 @@ import { from } from 'rxjs';
 })
 export class EDonorDialogComponent implements OnInit {
   
+  uid: string;
   donor_name: string;
   donor_ic: string;
   donor_age: number;
@@ -38,6 +39,7 @@ export class EDonorDialogComponent implements OnInit {
   ngOnInit() {
   
     //get donor data from donor component
+    this.uid = this.data.uid;
     this.donor_name  = this.data.donor_name;
     this.donor_ic = this.data.donor_ic;
     this.donor_age = this.data.donor_age;
@@ -72,7 +74,7 @@ export class EDonorDialogComponent implements OnInit {
     
   
     this.afs.collection('donor')
-            .doc(this.data.donor_ic)
+            .doc(this.uid)
             .update({donor_name: this.donor_name,
                     donor_ic: this.donor_ic,
                     donor_age: this.donor_age,
@@ -81,7 +83,7 @@ export class EDonorDialogComponent implements OnInit {
                     donor_address1: this.donor_address1,
                     donor_address2: this.donor_address2,
                     donor_postcode: this.donor_postcode,
-                    donor_bloodgroup: this.donor_bloodtype,
+                    donor_bloodType: this.donor_bloodtype,
                     donor_rhesus: this.donor_rhesus,
                     //last_donation: this.last_donate
                     })

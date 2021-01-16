@@ -45,6 +45,7 @@ export class AdddonationComponent implements OnInit {
       donation_date: this.authService.formatDate(donation_date),
       donation_amount: donation_amount,
       donation_type: donation_type,
+      donation_status: "approve",
             
     }
 

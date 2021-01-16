@@ -16,6 +16,7 @@ export class PrintQrCodeComponent implements OnInit {
   camp_location:string;
   time_from:string;
   time_to:string;
+  camp_id:string;
 
   constructor(private afs: AngularFirestore,
     public authService: AuthService,
@@ -25,6 +26,7 @@ export class PrintQrCodeComponent implements OnInit {
   
 
   ngOnInit(): void {
+    this.camp_id = this.data.uid;
     this.camp_name = this.data.camp_name;
     this.camp_location = this.data.camp_location;
     this.camp_date =  this.data.camp_date;
